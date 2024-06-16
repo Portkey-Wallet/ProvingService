@@ -39,6 +39,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2a4dad19c64a4f1a994732eaf2de348e21a00/db/3c0673ab/ServiceCollectionServiceExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c7f20d46104f4b23b67293ed3c62cb394000/85/a7eefb3a/InputPreparer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f3587d30b48b44ea9345c159ffc71a754000/f5/d0b0b004/InputPreparer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5cd0b9eccf7cd782b3fe64643d528847f711def2288da19f40b4ad978abf52ab/JwtBase64UrlEncoder.cs" root0="SKIP_HIGHLIGHTING" />
@@ -55,7 +56,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    ".NET Launch Settings Profile.ProvingService: http (1).executor": "Run",
+    ".NET Launch Settings Profile.ProvingService: http (1).executor": "Debug",
     ".NET Launch Settings Profile.ProvingService: http.executor": "Run",
     "316d9152-f909-4c1e-b6bb-f383d4e8d416.executor": "Debug",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
@@ -155,7 +156,7 @@
       <option name="presentableId" value="Default" />
       <updated>1718338837414</updated>
       <workItem from="1718338838528" duration="8521000" />
-      <workItem from="1718523028278" duration="2632000" />
+      <workItem from="1718523028278" duration="4512000" />
     </task>
     <task id="LOCAL-00001" summary="add skeleton">
       <option name="closed" value="true" />

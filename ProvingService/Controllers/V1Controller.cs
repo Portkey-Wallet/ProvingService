@@ -9,6 +9,7 @@ using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Portkey.JwtProof;
+using ProvingService.Services;
 
 namespace ProvingService.Controllers
 {
@@ -17,10 +18,12 @@ namespace ProvingService.Controllers
     public class V1Controller : ControllerBase
     {
         private readonly ProverServerSettings _proverServerSettings;
+        private readonly IJwksService _jwksService;
 
-        public V1Controller(IOptionsSnapshot<ProverServerSettings> proverServerSettings)
+        public V1Controller(IOptionsSnapshot<ProverServerSettings> proverServerSettings, IJwksService jwksService)
         {
             _proverServerSettings = proverServerSettings.Value;
+            _jwksService = jwksService;
         }
 
         [HttpGet("health")]
@@ -32,8 +35,10 @@ namespace ProvingService.Controllers
         [HttpPost("prove")]
         public async Task<ProveResponse> Prove(ProveRequest request)
         {
-            var pk =
-                "rr9RI_trqotRBIi9qTgoYPE4FnjvhIOoolHhi3Lxw3FqK-8vYwczsVEsTzVek3MAUdNNILhJozKN1Snirlrr_albKitJFJ1SbjJe2HsNeZu96TrWMNmWCCUOXK0ecEVdw8gqfGOE-_VvKaIVxYGaJpSystRjRXfrT8QHXNYMSI7xqJI9Obw4IUpwYxky6eVtB3zLW4Qz7cH2jFMsSB3uufdvOA-odJXrwZkC2FX0krVtSyCWzazjHMX0zOCckZVZK7xBNjuuElcnZ4IpGHcHDYtyI004WY-ez7_yxyOHGoJd31Omg39DkunpSQxfA87LLGumtd1OROvQzNFZETDqfw";
+            var headerBytes = new JwtBase64UrlEncoder().Decode(request.Jwt.Split(".")[0]);
+            var header = JsonConvert.DeserializeObject<JObject>(Encoding.UTF8.GetString(headerBytes));
+            var kid = header["kid"].ToString();
+            var pk = await _jwksService.GetKeyAsync(kid);
             var input = InputPreparer.Prepare(request.Jwt, pk, HexStringToByteArray(request.Salt));
             var responseMessage = await SendPostRequest(input);
             var proof = await responseMessage.Content.ReadAsStringAsync();
@@ -41,7 +46,6 @@ namespace ProvingService.Controllers
             var bytes2 = new JwtBase64UrlEncoder().Decode(request.Jwt.Split(".")[1]);
             var jsonValue = JsonConvert.DeserializeObject<JObject>(Encoding.UTF8.GetString(bytes2));
             var subValue = jsonValue["sub"].ToString();
-            // var nonceValue = jsonValue["nonce"].ToString();
             var salt = request.Salt;
             var saltBytes = HexStringToByteArray(salt);
             var identifierHash = Helpers.Helper.GetHash(Encoding.UTF8.GetBytes(subValue), saltBytes);

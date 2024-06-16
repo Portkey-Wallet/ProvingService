@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using ProvingService.Controllers;
+using ProvingService.Services;
 
 public class Startup
 {
@@ -19,6 +20,9 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services.Configure<ProverServerSettings>(_configuration.GetSection("ProverServerSettings"));
+        services.Configure<JwksSettings>(_configuration.GetSection("JwksSettings"));
+
+        services.AddSingleton<IJwksService, JwksService>();
 
         services.AddControllers();
 
