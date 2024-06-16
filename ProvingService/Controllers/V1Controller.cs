@@ -40,14 +40,13 @@ namespace ProvingService.Controllers
             try
             {
                 var jwt = Jwt.Parse(request.Jwt);
+                var salt = Salt.Parse(request.Salt);
                 var pk = await _jwksService.GetKeyAsync(jwt.Kid);
-                var input = InputPreparer.Prepare(request.Jwt, pk, HexStringToByteArray(request.Salt));
+                var input = InputPreparer.Prepare(request.Jwt, pk, salt.Value);
                 var responseMessage = await SendPostRequest(input);
                 var proof = await responseMessage.Content.ReadAsStringAsync();
 
-                var salt = request.Salt;
-                var saltBytes = HexStringToByteArray(salt);
-                var identifierHash = Helpers.HashHelper.GetHash(Encoding.UTF8.GetBytes(jwt.Subject), saltBytes);
+                var identifierHash = Helpers.HashHelper.GetHash(Encoding.UTF8.GetBytes(jwt.Subject), salt.Value);
 
                 return Ok(new ProveResponse
                 {
@@ -60,18 +59,6 @@ namespace ProvingService.Controllers
                 // Log the exception here
                 return StatusCode(500, new { Error = $"An error occurred: {ex.Message}" });
             }
-        }
-
-        private static byte[] HexStringToByteArray(string hex)
-        {
-            var length = hex.Length;
-            var bytes = new byte[length / 2];
-            for (var i = 0; i < length; i += 2)
-            {
-                bytes[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
-            }
-
-            return bytes;
         }
 
 
