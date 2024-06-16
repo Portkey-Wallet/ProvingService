@@ -81,6 +81,10 @@ public class Jwt
         Debug.Assert(payload["iss"] != null, "the payload doesn't contain an \"iss\" claim");
         Debug.Assert(payload["sub"] != null, "the payload doesn't contain a \"sub\" claim");
         Debug.Assert(payload["nonce"] != null, "the payload doesn't contain a \"nonce\" claim");
+
+        if (!System.Text.RegularExpressions.Regex.IsMatch(payload["nonce"]!.ToString(), @"^[a-fA-F0-9]{64}$"))
+            throw new InvalidJwtException(
+                "Invalid nonce: Nonce must be a 64-character hexadecimal string (i.e. 32 bytes)");
         return (payload["iss"]!.ToString(), payload["sub"]!.ToString(), payload["nonce"]!.ToString());
     }
 }
