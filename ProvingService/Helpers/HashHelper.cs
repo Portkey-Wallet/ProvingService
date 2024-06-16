@@ -1,11 +1,10 @@
 using System;
 using System.Linq;
-using AElf;
 using AElf.Types;
 
 namespace ProvingService.Helpers;
 
-public class Helper
+public class HashHelper
 {
     public static Hash GetHash(byte[] identifier, byte[] salt)
     {
@@ -22,7 +21,7 @@ public class Helper
             throw new Exception($"Salt has to be {maxSaltLength} bytes.");
         }
 
-        var hash = HashHelper.ComputeFrom(identifier);
-        return HashHelper.ComputeFrom(hash.Concat(salt).ToArray());
+        var hash = AElf.HashHelper.ComputeFrom(identifier);
+        return AElf.HashHelper.ComputeFrom(hash.Concat(salt).ToArray());
     }
 }
