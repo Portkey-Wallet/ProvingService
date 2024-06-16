@@ -1,6 +1,5 @@
 using System;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using JWT;
 using Newtonsoft.Json;
@@ -26,7 +25,7 @@ public class Jwt
     public static Jwt Parse(string raw)
     {
         var parts = raw.Split(".");
-        if (parts.Length == 3)
+        if (parts.Length != 3)
         {
             throw new InvalidJwtException("Invalid JWT format: 3 parts expected");
         }
