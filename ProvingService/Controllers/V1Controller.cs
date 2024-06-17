@@ -36,7 +36,7 @@ namespace ProvingService.Controllers
         }
 
         [HttpPost("prove")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ProveResponse))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErrorResponse))]
         public async Task<IActionResult> Prove(ProveRequest request)
         {
@@ -65,7 +65,7 @@ namespace ProvingService.Controllers
         }
 
         [HttpPost("verify")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status200OK, Type=typeof(VerifyingResponse))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErrorResponse))]
         public async Task<IActionResult> Verify(VerifyRequest request)
         {

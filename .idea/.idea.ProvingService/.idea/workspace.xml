@@ -10,26 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eade6382-f5a2-4f36-b382-a9cd021b6b99" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.ProvingService/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.ProvingService/.idea/projectSettingsUpdater.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.ProvingService/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProvingService/Controllers/VerifyRequest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProvingService/Controllers/VerifyingResponse.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProvingService/Helpers/HexHelper.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProvingService/Services/CircuitSettings.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProvingService/Services/VerifyingService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProvingService/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ProvingService/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProvingService/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProvingService.Tests/ProvingService.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ProvingService.Tests/ProvingService.Tests.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProvingService.Tests/UnitTest1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProvingService.Tests/UnitTest1.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProvingService/Controllers/V1Controller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProvingService/Controllers/V1Controller.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProvingService/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/ProvingService/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProvingService/ProvingService.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ProvingService/ProvingService.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProvingService/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProvingService/Startup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProvingService/Types/Salt.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProvingService/Types/Salt.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProvingService/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProvingService/appsettings.Development.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProvingService/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProvingService/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nuget.config" beforeDir="false" afterPath="$PROJECT_DIR$/ProvingService/nuget.config" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProvingService/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ProvingService/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,29 +57,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Launch Settings Profile.ProvingService: http (1).executor&quot;: &quot;Debug&quot;,
-    &quot;.NET Launch Settings Profile.ProvingService: http.executor&quot;: &quot;Run&quot;,
-    &quot;316d9152-f909-4c1e-b6bb-f383d4e8d416.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Launch Settings Profile.ProvingService: http (1).executor": "Run",
+    ".NET Launch Settings Profile.ProvingService: http.executor": "Run",
+    "316d9152-f909-4c1e-b6bb-f383d4e8d416.executor": "Debug",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;rider.external.source.directories&quot;: [
-      &quot;/Users/steven/Library/Application Support/JetBrains/Rider2023.3/resharper-host/DecompilerCache&quot;,
-      &quot;/Users/steven/Library/Application Support/JetBrains/Rider2023.3/resharper-host/SourcesCache&quot;,
-      &quot;/Users/steven/.local/share/Symbols/src&quot;
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "/Users/steven/Library/Application Support/JetBrains/Rider2023.3/resharper-host/DecompilerCache",
+      "/Users/steven/Library/Application Support/JetBrains/Rider2023.3/resharper-host/SourcesCache",
+      "/Users/steven/.local/share/Symbols/src"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Launch Settings Profile.ProvingService: http (1)">
     <configuration name="ProvingService" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
@@ -196,7 +182,7 @@
       <workItem from="1718549506577" duration="3147000" />
       <workItem from="1718553749291" duration="63000" />
       <workItem from="1718554968897" duration="201000" />
-      <workItem from="1718582839252" duration="1928000" />
+      <workItem from="1718582839252" duration="2369000" />
     </task>
     <task id="LOCAL-00001" summary="add skeleton">
       <option name="closed" value="true" />
