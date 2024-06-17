@@ -10,10 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eade6382-f5a2-4f36-b382-a9cd021b6b99" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.github/workflows/build-docker.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ProvingService/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProvingService/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProvingService.Tests/ProvingService.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ProvingService.Tests/ProvingService.Tests.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProvingService.Tests/UnitTest1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProvingService.Tests/UnitTest1.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProvingService/Controllers/V1Controller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProvingService/Controllers/V1Controller.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProvingService/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProvingService/appsettings.Development.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProvingService/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ProvingService/docker-compose.yml" afterDir="false" />
     </list>
@@ -182,7 +182,7 @@
       <workItem from="1718549506577" duration="3147000" />
       <workItem from="1718553749291" duration="63000" />
       <workItem from="1718554968897" duration="201000" />
-      <workItem from="1718582839252" duration="2369000" />
+      <workItem from="1718582839252" duration="3324000" />
     </task>
     <task id="LOCAL-00001" summary="add skeleton">
       <option name="closed" value="true" />
