@@ -1,4 +1,5 @@
 using System;
+using ProvingService.Helpers;
 
 namespace ProvingService.Types;
 
@@ -21,19 +22,7 @@ public class Salt
 
         return new Salt()
         {
-            Value = HexStringToByteArray(raw.Replace("0x", "").Replace("0X", ""))
+            Value = raw.Replace("0x", "").Replace("0X", "").HexStringToByteArray()
         };
-    }
-
-    private static byte[] HexStringToByteArray(string hex)
-    {
-        var length = hex.Length;
-        var bytes = new byte[length / 2];
-        for (var i = 0; i < length; i += 2)
-        {
-            bytes[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
-        }
-
-        return bytes;
     }
 }

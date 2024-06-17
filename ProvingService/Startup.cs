@@ -21,8 +21,10 @@ public class Startup
     {
         services.Configure<ProverServerSettings>(_configuration.GetSection("ProverServerSettings"));
         services.Configure<JwksSettings>(_configuration.GetSection("JwksSettings"));
+        services.Configure<CircuitSettings>(_configuration.GetSection("CircuitSettings"));
 
         services.AddSingleton<IJwksService, JwksService>();
+        services.AddSingleton<IVerifyingService, VerifyingService>();
 
         services.AddControllers();
 

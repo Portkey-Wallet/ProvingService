@@ -10,25 +10,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eade6382-f5a2-4f36-b382-a9cd021b6b99" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProvingService.dir/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProvingService.dir/.idea/indexLayout.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProvingService.dir/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProvingService/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProvingService/.idea/indexLayout.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProvingService/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/ProveRequest.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/ProveResponse.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/ProverServerSettings.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/V1Controller.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Properties/launchSettings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProvingService.csproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProvingService.http" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProvingService.sln" beforeDir="false" afterPath="$PROJECT_DIR$/ProvingService.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Startup.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/appsettings.Development.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/appsettings.json" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.ProvingService/.idea/indexLayout.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.ProvingService/.idea/projectSettingsUpdater.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.ProvingService/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProvingService/Controllers/VerifyRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProvingService/Controllers/VerifyingResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProvingService/Helpers/HexHelper.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProvingService/Services/CircuitSettings.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProvingService/Services/VerifyingService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProvingService/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProvingService/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProvingService/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProvingService.Tests/ProvingService.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ProvingService.Tests/ProvingService.Tests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProvingService.Tests/UnitTest1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProvingService.Tests/UnitTest1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProvingService/Controllers/V1Controller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProvingService/Controllers/V1Controller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProvingService/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/ProvingService/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProvingService/ProvingService.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ProvingService/ProvingService.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProvingService/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProvingService/Startup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProvingService/Types/Salt.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProvingService/Types/Salt.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProvingService/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProvingService/appsettings.Development.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProvingService/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProvingService/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nuget.config" beforeDir="false" afterPath="$PROJECT_DIR$/ProvingService/nuget.config" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,11 +41,25 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2a4dad19c64a4f1a994732eaf2de348e21a00/db/3c0673ab/ServiceCollectionServiceExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c7f20d46104f4b23b67293ed3c62cb394000/45/399a321d/Constants.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c7f20d46104f4b23b67293ed3c62cb394000/85/a7eefb3a/InputPreparer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c7f20d46104f4b23b67293ed3c62cb394000/dc/a58bd026/BytesExtension.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c8dfecea573343e88cd8dc31630a87945a00/ba/466b9bc2/Verifier.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c8dfecea573343e88cd8dc31630a87945a00/f5/547a5a07/RapidSnarkProof.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f3587d30b48b44ea9345c159ffc71a754000/f5/d0b0b004/InputPreparer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/443ce614ff11fd4152a3c735dec9ef388c537ef8ea9c24e0f018f1bd619e85/JObject.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5cd0b9eccf7cd782b3fe64643d528847f711def2288da19f40b4ad978abf52ab/JwtBase64UrlEncoder.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f3981d658666ec9cc1e6958fe22f8614bfe02ccb6625b056c3ece3729c9262/JsonConvert.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ProvingService.Tests/UnitTest1.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ProvingService/Controllers/ProveRequest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ProvingService/Controllers/V1Controller.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ProvingService/Controllers/VerifyRequest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ProvingService/Helpers/HexHelper.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ProvingService/Services/CircuitSettings.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ProvingService/Services/JwksService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ProvingService/Services/VerifyingService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ProvingService/Startup.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ProvingService/Types/Salt.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/obj/Debug/net8.0/ProvingService.AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -56,29 +71,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Launch Settings Profile.ProvingService: http (1).executor": "Debug",
-    ".NET Launch Settings Profile.ProvingService: http.executor": "Run",
-    "316d9152-f909-4c1e-b6bb-f383d4e8d416.executor": "Debug",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.ProvingService: http (1).executor&quot;: &quot;Debug&quot;,
+    &quot;.NET Launch Settings Profile.ProvingService: http.executor&quot;: &quot;Run&quot;,
+    &quot;316d9152-f909-4c1e-b6bb-f383d4e8d416.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "/Users/steven/Library/Application Support/JetBrains/Rider2023.3/resharper-host/DecompilerCache",
-      "/Users/steven/Library/Application Support/JetBrains/Rider2023.3/resharper-host/SourcesCache",
-      "/Users/steven/.local/share/Symbols/src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;/Users/steven/Library/Application Support/JetBrains/Rider2023.3/resharper-host/DecompilerCache&quot;,
+      &quot;/Users/steven/Library/Application Support/JetBrains/Rider2023.3/resharper-host/SourcesCache&quot;,
+      &quot;/Users/steven/.local/share/Symbols/src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.ProvingService: http (1)">
     <configuration name="ProvingService" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
@@ -158,7 +173,30 @@
       <option name="presentableId" value="Default" />
       <updated>1718338837414</updated>
       <workItem from="1718338838528" duration="8521000" />
-      <workItem from="1718523028278" duration="7621000" />
+      <workItem from="1718523028278" duration="14283000" />
+      <workItem from="1718538292565" duration="143000" />
+      <workItem from="1718538446042" duration="1725000" />
+      <workItem from="1718546892264" duration="175000" />
+      <workItem from="1718547111826" duration="35000" />
+      <workItem from="1718547152517" duration="54000" />
+      <workItem from="1718547214716" duration="335000" />
+      <workItem from="1718547616730" duration="61000" />
+      <workItem from="1718547689500" duration="116000" />
+      <workItem from="1718547809809" duration="85000" />
+      <workItem from="1718547897578" duration="70000" />
+      <workItem from="1718547970465" duration="71000" />
+      <workItem from="1718548044323" duration="15000" />
+      <workItem from="1718548062320" duration="150000" />
+      <workItem from="1718548214843" duration="60000" />
+      <workItem from="1718548277339" duration="368000" />
+      <workItem from="1718548648378" duration="22000" />
+      <workItem from="1718548673779" duration="469000" />
+      <workItem from="1718549152236" duration="103000" />
+      <workItem from="1718549262461" duration="236000" />
+      <workItem from="1718549506577" duration="3147000" />
+      <workItem from="1718553749291" duration="63000" />
+      <workItem from="1718554968897" duration="201000" />
+      <workItem from="1718582839252" duration="1928000" />
     </task>
     <task id="LOCAL-00001" summary="add skeleton">
       <option name="closed" value="true" />
@@ -185,16 +223,55 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/ProvingService.Tests/UnitTest1.cs</url>
-          <line>17</line>
+          <line>19</line>
           <properties documentPath="$PROJECT_DIR$/ProvingService.Tests/UnitTest1.cs" initialLine="15" containingFunctionPresentation="Method 'Test1'">
             <startOffsets>
-              <option value="1437" />
+              <option value="1468" />
             </startOffsets>
             <endOffsets>
-              <option value="1462" />
+              <option value="1493" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c8dfecea573343e88cd8dc31630a87945a00/ba/466b9bc2/Verifier.cs</url>
+          <line>29</line>
+          <properties documentPath="$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c8dfecea573343e88cd8dc31630a87945a00/ba/466b9bc2/Verifier.cs" initialLine="29" containingFunctionPresentation="Method 'VerifyBn254'">
+            <startOffsets>
+              <option value="1228" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1290" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/ProvingService.Tests/UnitTest1.cs</url>
+          <line>30</line>
+          <properties documentPath="$PROJECT_DIR$/ProvingService.Tests/UnitTest1.cs" initialLine="30" containingFunctionPresentation="Method 'Test2'">
+            <startOffsets>
+              <option value="1975" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2017" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/ProvingService.Tests/UnitTest1.cs</url>
+          <line>31</line>
+          <properties documentPath="$PROJECT_DIR$/ProvingService.Tests/UnitTest1.cs" initialLine="31" containingFunctionPresentation="Method 'Test2'">
+            <startOffsets>
+              <option value="2026" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2051" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

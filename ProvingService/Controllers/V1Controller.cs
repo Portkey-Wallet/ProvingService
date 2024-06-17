@@ -19,11 +19,14 @@ namespace ProvingService.Controllers
     {
         private readonly ProverServerSettings _proverServerSettings;
         private readonly IJwksService _jwksService;
+        private readonly IVerifyingService _verifyingService;
 
-        public V1Controller(IOptionsSnapshot<ProverServerSettings> proverServerSettings, IJwksService jwksService)
+        public V1Controller(IOptionsSnapshot<ProverServerSettings> proverServerSettings,
+            IJwksService jwksService, IVerifyingService verifyingService)
         {
             _proverServerSettings = proverServerSettings.Value;
             _jwksService = jwksService;
+            _verifyingService = verifyingService;
         }
 
         [HttpGet("health")]
@@ -61,6 +64,25 @@ namespace ProvingService.Controllers
             }
         }
 
+        [HttpPost("verify")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErrorResponse))]
+        public async Task<IActionResult> Verify(VerifyRequest request)
+        {
+            try
+            {
+                var valid = await _verifyingService.VerifyAsync(request);
+                return Ok(new VerifyingResponse
+                {
+                    Valid = valid
+                });
+            }
+            catch (Exception ex)
+            {
+                // Log the exception here
+                return StatusCode(500, new { Error = $"An error occurred: {ex.Message}" });
+            }
+        }
 
         private async Task<HttpResponseMessage> SendPostRequest(Dictionary<string, IList<string>> payload)
         {
