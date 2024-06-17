@@ -65,7 +65,7 @@ namespace ProvingService.Controllers
         }
 
         [HttpPost("verify")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type=typeof(VerifyingResponse))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(VerifyingResponse))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErrorResponse))]
         public async Task<IActionResult> Verify(VerifyRequest request)
         {
@@ -82,6 +82,33 @@ namespace ProvingService.Controllers
                 // Log the exception here
                 return StatusCode(500, new { Error = $"An error occurred: {ex.Message}" });
             }
+        }
+
+        [HttpPost("verifying-key")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(VerifyingKeyResponse))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErrorResponse))]
+        public async Task<IActionResult> VerifyingKey()
+        {
+            try
+            {
+                var key = _verifyingService.GetVerifyingKey();
+                return Ok(new VerifyingKeyResponse()
+                {
+                    Key = key
+                });
+            }
+            catch (Exception ex)
+            {
+                // Log the exception here
+                return StatusCode(500, new { Error = $"An error occurred: {ex.Message}" });
+            }
+        }
+
+
+        [HttpGet("verifying-key")]
+        public async Task<string> GetVerifyingKey()
+        {
+            return _verifyingService.GetVerifyingKey();
         }
 
         private async Task<HttpResponseMessage> SendPostRequest(Dictionary<string, IList<string>> payload)

@@ -25,6 +25,7 @@ public class VerifyingException : Exception
 public interface IVerifyingService
 {
     Task<bool> VerifyAsync(VerifyRequest request);
+    string GetVerifyingKey();
 }
 
 /// <summary>
@@ -38,7 +39,7 @@ public class VerifyingService : IVerifyingService
     private string? _verifyingKey;
     private IJwksService _jwksService;
 
-    private string GetVerifyingKey()
+    public string GetVerifyingKey()
     {
         if (_verifyingKey != null) return _verifyingKey;
         using var prover = Prover.Create(_circuitSettings.WasmPath, _circuitSettings.R1csPath,

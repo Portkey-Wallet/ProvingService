@@ -10,12 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eade6382-f5a2-4f36-b382-a9cd021b6b99" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/build-docker.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/build-docker.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProvingService/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProvingService/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ProvingService/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProvingService/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProvingService.Tests/ProvingService.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ProvingService.Tests/ProvingService.Tests.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProvingService.Tests/UnitTest1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProvingService.Tests/UnitTest1.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProvingService/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProvingService/appsettings.Development.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProvingService/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ProvingService/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,29 +56,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Launch Settings Profile.ProvingService: http (1).executor": "Run",
-    ".NET Launch Settings Profile.ProvingService: http.executor": "Run",
-    "316d9152-f909-4c1e-b6bb-f383d4e8d416.executor": "Debug",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.ProvingService: http (1).executor&quot;: &quot;Run&quot;,
+    &quot;.NET Launch Settings Profile.ProvingService: http.executor&quot;: &quot;Run&quot;,
+    &quot;316d9152-f909-4c1e-b6bb-f383d4e8d416.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "/Users/steven/Library/Application Support/JetBrains/Rider2023.3/resharper-host/DecompilerCache",
-      "/Users/steven/Library/Application Support/JetBrains/Rider2023.3/resharper-host/SourcesCache",
-      "/Users/steven/.local/share/Symbols/src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;/Users/steven/Library/Application Support/JetBrains/Rider2023.3/resharper-host/DecompilerCache&quot;,
+      &quot;/Users/steven/Library/Application Support/JetBrains/Rider2023.3/resharper-host/SourcesCache&quot;,
+      &quot;/Users/steven/.local/share/Symbols/src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.ProvingService: http (1)">
     <configuration name="ProvingService" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
@@ -182,7 +181,10 @@
       <workItem from="1718549506577" duration="3147000" />
       <workItem from="1718553749291" duration="63000" />
       <workItem from="1718554968897" duration="201000" />
-      <workItem from="1718582839252" duration="3519000" />
+      <workItem from="1718582839252" duration="6796000" />
+      <workItem from="1718591083489" duration="850000" />
+      <workItem from="1718591943281" duration="482000" />
+      <workItem from="1718592432093" duration="184000" />
     </task>
     <task id="LOCAL-00001" summary="add skeleton">
       <option name="closed" value="true" />
@@ -192,7 +194,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718341015468</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Use Groth16.Net 1.0.3">
+      <option name="closed" value="true" />
+      <created>1718591145062</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1718591145062</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -202,7 +212,8 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="add skeleton" />
-    <option name="LAST_COMMIT_MESSAGE" value="add skeleton" />
+    <MESSAGE value="Use Groth16.Net 1.0.3" />
+    <option name="LAST_COMMIT_MESSAGE" value="Use Groth16.Net 1.0.3" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
