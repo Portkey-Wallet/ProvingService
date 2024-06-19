@@ -25,6 +25,7 @@ public class Startup
 
         services.AddSingleton<IJwksService, JwksService>();
         services.AddSingleton<IVerifyingService, VerifyingService>();
+        services.AddHttpClient();
 
         services.AddControllers();
 

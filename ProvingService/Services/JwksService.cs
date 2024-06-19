@@ -24,14 +24,14 @@ public class PublicKeyNotFoundException : Exception
 public class JwksService : IJwksService
 {
     private readonly ConcurrentDictionary<string, string> _cache;
-    private readonly HttpClient _httpClient;
     private readonly JwksSettings _jkwsSettings;
+    private readonly IHttpClientFactory _clientFactory;
 
-    public JwksService(IOptionsSnapshot<JwksSettings> jkwsEndpointsSettings)
+    public JwksService(IOptionsSnapshot<JwksSettings> jkwsEndpointsSettings, IHttpClientFactory clientFactory)
     {
         _jkwsSettings = jkwsEndpointsSettings.Value;
+        _clientFactory = clientFactory;
         _cache = new ConcurrentDictionary<string, string>();
-        _httpClient = new HttpClient();
     }
 
     public async Task<string> GetKeyAsync(string kid)
@@ -54,7 +54,8 @@ public class JwksService : IJwksService
     {
         foreach (var endpoint in _jkwsSettings.Endpoints)
         {
-            var jsonStr = await _httpClient.GetStringAsync(endpoint);
+            var client = _clientFactory.CreateClient();
+            var jsonStr = await client.GetStringAsync(endpoint);
             var jsonValue = JsonConvert.DeserializeObject<JObject>(jsonStr);
             var keys = jsonValue?["keys"];
             if (keys == null) continue;

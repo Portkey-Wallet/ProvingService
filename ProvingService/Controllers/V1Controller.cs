@@ -20,10 +20,12 @@ namespace ProvingService.Controllers
         private readonly ProverServerSettings _proverServerSettings;
         private readonly IJwksService _jwksService;
         private readonly IVerifyingService _verifyingService;
+        private readonly IHttpClientFactory _clientFactory;
 
         public V1Controller(IOptionsSnapshot<ProverServerSettings> proverServerSettings,
-            IJwksService jwksService, IVerifyingService verifyingService)
+            IHttpClientFactory clientFactory, IJwksService jwksService, IVerifyingService verifyingService)
         {
+            _clientFactory = clientFactory;
             _proverServerSettings = proverServerSettings.Value;
             _jwksService = jwksService;
             _verifyingService = verifyingService;
@@ -113,7 +115,7 @@ namespace ProvingService.Controllers
 
         private async Task<HttpResponseMessage> SendPostRequest(Dictionary<string, IList<string>> payload)
         {
-            using var client = new HttpClient();
+            var client = _clientFactory.CreateClient();
             var jsonString = JsonConvert.SerializeObject(payload);
             var content = new StringContent(jsonString, Encoding.UTF8, "application/json");
             var response = await client.PostAsync(_proverServerSettings.Endpoint, content);
