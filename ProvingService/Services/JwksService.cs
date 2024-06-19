@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Concurrent;
 using Microsoft.Extensions.Options;
 using System.Collections.Generic;
@@ -11,6 +12,13 @@ namespace ProvingService.Services;
 public interface IJwksService
 {
     Task<string> GetKeyAsync(string kid);
+}
+
+public class PublicKeyNotFoundException : Exception
+{
+    public PublicKeyNotFoundException(string message) : base(message)
+    {
+    }
 }
 
 public class JwksService : IJwksService
@@ -34,7 +42,12 @@ public class JwksService : IJwksService
         }
 
         await RefreshKeysAsync();
-        return _cache.GetValueOrDefault(kid, "");
+        if (_cache.TryGetValue(kid, out var cert1))
+        {
+            return cert1;
+        }
+
+        throw new PublicKeyNotFoundException($"Public key with kid {kid} not found");
     }
 
     private async Task RefreshKeysAsync()

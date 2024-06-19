@@ -5,11 +5,19 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Serilog;
+using Serilog.Formatting.Json;
 
 public class Program
 {
     static async Task Main(string[] args)
     {
+        Log.Logger = new LoggerConfiguration()
+            .WriteTo.Console(new JsonFormatter())
+            .WriteTo.File(new JsonFormatter(), "logs/proving-service-.log",
+                rollingInterval: RollingInterval.Day, retainedFileCountLimit: 3,
+                fileSizeLimitBytes: 2L * 1024 * 1024 * 1024)
+            .CreateLogger();
         try
         {
             var builder = new ConfigurationBuilder()
@@ -26,11 +34,7 @@ public class Program
                 webBuilder.UseStartup<Startup>();
                 webBuilder.UseConfiguration(configuration);
             });
-            hostBuilder.ConfigureLogging(logging => logging.AddConsole(options =>
-            {
-                options.IncludeScopes = true;
-                options.TimestampFormat = "yyyy-MM-dd hh:mm:ss";
-            }));
+            hostBuilder.ConfigureLogging(logging => logging.AddSerilog());
             var host = hostBuilder.Build();
 
             await host.StartAsync();
