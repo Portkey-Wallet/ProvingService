@@ -17,17 +17,12 @@ namespace ProvingService.Controllers
     [Route("v1")]
     public class V1Controller : ControllerBase
     {
-        private readonly ProverServerSettings _proverServerSettings;
-        private readonly IJwksService _jwksService;
+        private readonly IProvingService _provingService;
         private readonly IVerifyingService _verifyingService;
-        private readonly IHttpClientFactory _clientFactory;
 
-        public V1Controller(IOptionsSnapshot<ProverServerSettings> proverServerSettings,
-            IHttpClientFactory clientFactory, IJwksService jwksService, IVerifyingService verifyingService)
+        public V1Controller(IProvingService provingService, IVerifyingService verifyingService)
         {
-            _clientFactory = clientFactory;
-            _proverServerSettings = proverServerSettings.Value;
-            _jwksService = jwksService;
+            _provingService = provingService;
             _verifyingService = verifyingService;
         }
 
@@ -44,19 +39,12 @@ namespace ProvingService.Controllers
         {
             try
             {
-                var jwt = Jwt.Parse(request.Jwt);
-                var salt = Salt.Parse(request.Salt);
-                var pk = await _jwksService.GetKeyAsync(jwt.Kid);
-                var input = InputPreparer.Prepare(request.Jwt, pk, salt.Value);
-                var responseMessage = await SendPostRequest(input);
-                var proof = await responseMessage.Content.ReadAsStringAsync();
-
-                var identifierHash = Helpers.HashHelper.GetHash(Encoding.UTF8.GetBytes(jwt.Subject), salt.Value);
+                var (proof, identifierHash) = await _provingService.ProveAsync(request);
 
                 return Ok(new ProveResponse
                 {
                     Proof = proof,
-                    IdentifierHash = identifierHash.ToHex()
+                    IdentifierHash = identifierHash
                 });
             }
             catch (Exception ex)
@@ -111,15 +99,6 @@ namespace ProvingService.Controllers
         public async Task<string> GetVerifyingKey()
         {
             return _verifyingService.GetVerifyingKey();
-        }
-
-        private async Task<HttpResponseMessage> SendPostRequest(Dictionary<string, IList<string>> payload)
-        {
-            var client = _clientFactory.CreateClient();
-            var jsonString = JsonConvert.SerializeObject(payload);
-            var content = new StringContent(jsonString, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync(_proverServerSettings.Endpoint, content);
-            return response;
         }
     }
 }
