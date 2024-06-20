@@ -57,6 +57,7 @@ public class JwksService : IJwksService
     private async Task RefreshKeysAsync()
     {
         var client = _clientFactory.CreateClient();
+        client.Timeout = TimeSpan.Parse(_jkwsSettings.Timeout ?? "00:02:00");
         foreach (var endpoint in _jkwsSettings.Endpoints)
         {
             try
