@@ -81,8 +81,11 @@ public class JwksService : IJwksService
             var kid = key["kid"]?.ToString();
             var n = key["n"]?.ToString();
             if (kid == null) continue;
-            if (n != null)
-                _cache.TryAdd(kid, n);
+            if (n == null) continue;
+            if (_cache.TryAdd(kid, n))
+            {
+                _logger.LogDebug($"Added public key with kid {kid}");
+            }
         }
     }
 }

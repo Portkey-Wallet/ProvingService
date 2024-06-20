@@ -12,12 +12,6 @@ public class Program
 {
     static async Task Main(string[] args)
     {
-        Log.Logger = new LoggerConfiguration()
-            .WriteTo.Console(new JsonFormatter())
-            .WriteTo.File(new JsonFormatter(), "logs/proving-service-.log",
-                rollingInterval: RollingInterval.Day, retainedFileCountLimit: 3,
-                fileSizeLimitBytes: 2L * 1024 * 1024 * 1024)
-            .CreateLogger();
         try
         {
             var builder = new ConfigurationBuilder()
@@ -27,6 +21,14 @@ public class Program
                     $"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json",
                     optional: true);
             var configuration = builder.Build();
+
+            Log.Logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(configuration)
+                .WriteTo.Console(new JsonFormatter())
+                .WriteTo.File(new JsonFormatter(), "logs/proving-service-.log",
+                    rollingInterval: RollingInterval.Day, retainedFileCountLimit: 3,
+                    fileSizeLimitBytes: 2L * 1024 * 1024 * 1024)
+                .CreateLogger();
 
             var hostBuilder = new HostBuilder();
             hostBuilder.ConfigureWebHostDefaults(webBuilder =>
