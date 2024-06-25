@@ -38,6 +38,7 @@ public class VerifyingService : IVerifyingService
     private CircuitSettings _circuitSettings;
     private string? _verifyingKey;
     private IJwksService _jwksService;
+    private readonly IIdentifierHashService _identifierHashService;
 
     public string GetVerifyingKey()
     {
@@ -49,10 +50,12 @@ public class VerifyingService : IVerifyingService
         return _verifyingKey;
     }
 
-    public VerifyingService(IOptionsSnapshot<CircuitSettings> circuitSettings, IJwksService jwksService)
+    public VerifyingService(IOptionsSnapshot<CircuitSettings> circuitSettings, IJwksService jwksService,
+        IIdentifierHashService identifierHashService)
     {
         _circuitSettings = circuitSettings.Value;
         _jwksService = jwksService;
+        _identifierHashService = identifierHashService;
     }
 
     /// <summary>
@@ -63,7 +66,7 @@ public class VerifyingService : IVerifyingService
     public async Task<bool> VerifyAsync(VerifyRequest request)
     {
         var vk = GetVerifyingKey();
-        var identifierHash = request.IdentifierHash.HexStringToByteArray().Select(b => b.ToString()).ToList();
+
         var pubkey = await _jwksService.GetKeyAsync(request.Kid);
         var pubkeyChunks = new JwtBase64UrlEncoder().Decode(pubkey)
             .ToChunked(CircomBigIntN, CiromBigIntK)
@@ -76,7 +79,8 @@ public class VerifyingService : IVerifyingService
 
         var publicInputs = new List<List<string>>
         {
-            identifierHash, nonceInInts, pubkeyChunks, saltInInts
+            _identifierHashService.ToPublicInput(request.IdentifierHash),
+            nonceInInts, pubkeyChunks, saltInInts
         }.SelectMany(n => n).ToList();
 
         return Verifier.VerifyBn254(vk, publicInputs, new RapidSnarkProof

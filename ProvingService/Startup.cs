@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.FeatureManagement;
 using Microsoft.OpenApi.Models;
 using ProvingService.Controllers;
 using ProvingService.Services;
@@ -19,9 +20,21 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
+        services.AddFeatureManagement();
         services.Configure<ProverServerSettings>(_configuration.GetSection("ProverServerSettings"));
         services.Configure<JwksSettings>(_configuration.GetSection("JwksSettings"));
         services.Configure<CircuitSettings>(_configuration.GetSection("CircuitSettings"));
+
+        services.AddTransient<IIdentifierHashService>(serviceProvider =>
+        {
+            var featureManager = serviceProvider.GetRequiredService<IFeatureManager>();
+            if (featureManager.IsEnabledAsync("UsePoseidon").Result)
+            {
+                return new PoseidonIdentifierHashService();
+            }
+
+            return new Sha256IdentifierHashService();
+        });
 
         services.AddSingleton<IJwksService, JwksService>();
         services.AddSingleton<IVerifyingService, VerifyingService>();

@@ -9,6 +9,7 @@
         <PackageReference Include="Groth16.Net" Version="1.0.3" />
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0"/>
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0"/>
+        <PackageReference Include="Microsoft.FeatureManagement.AspNetCore" Version="3.3.1" />
         <!--    <PackageReference Include="Microsoft.Orleans.Server" Version="7.0.0" />-->
         <!--    <PackageReference Include="Microsoft.Orleans.Core" Version="7.0.0" />-->
         <!--    <PackageReference Include="Microsoft.Orleans.Sdk" Version="7.0.0" />-->

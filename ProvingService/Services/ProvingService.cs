@@ -8,7 +8,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Portkey.JwtProof;
+using Portkey.JwtProof.Extensions;
 using ProvingService.Controllers;
+using ProvingService.Helpers;
 using ProvingService.Types;
 
 namespace ProvingService.Services;
@@ -29,15 +31,18 @@ public class ProvingService : IProvingService
 {
     private readonly ProverServerSettings _proverServerSettings;
     private readonly IJwksService _jwksService;
+    private readonly IIdentifierHashService _identifierHashService;
     private readonly IHttpClientFactory _clientFactory;
     private readonly ILogger<ProvingService> _logger;
 
     public ProvingService(IOptionsSnapshot<ProverServerSettings> proverServerSettings,
-        IHttpClientFactory clientFactory, IJwksService jwksService, ILogger<ProvingService> logger)
+        IHttpClientFactory clientFactory, IJwksService jwksService, IIdentifierHashService identifierHashService,
+        ILogger<ProvingService> logger)
     {
         _clientFactory = clientFactory;
         _proverServerSettings = proverServerSettings.Value;
         _jwksService = jwksService;
+        _identifierHashService = identifierHashService;
         _logger = logger;
     }
 
@@ -48,7 +53,6 @@ public class ProvingService : IProvingService
         var pk = await _jwksService.GetKeyAsync(jwt.Kid);
         var input = InputPreparer.Prepare(request.Jwt, pk, salt.Value);
 
-
         var responseMessage = await SendPostRequest(input);
         var proof = await responseMessage.Content.ReadAsStringAsync();
         if (proof.Contains("failed"))
@@ -56,8 +60,7 @@ public class ProvingService : IProvingService
             throw new ProofGenerationException("Proof generation failed: " + proof);
         }
 
-        var identifierHash = Helpers.HashHelper.GetHash(Encoding.UTF8.GetBytes(jwt.Subject), salt.Value);
-        return (proof, identifierHash.ToHex());
+        return (proof, _identifierHashService.GenerateIdentifierHash(jwt.Subject, request.Salt.HexStringToByteArray()));
     }
 
     private async Task<HttpResponseMessage> SendPostRequest(Dictionary<string, IList<string>> payload)
