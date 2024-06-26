@@ -4,14 +4,14 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
 # Set the working directory
 WORKDIR /app
 
-# Copy the .csproj file and restore the NuGet packages
-COPY *.csproj ./
-COPY nuget.config ./
-RUN dotnet restore
-
-# Copy the rest of the files and build the application
+# Copy the entire solution directory
 COPY . ./
-RUN dotnet publish -c Release -o out
+
+# Restore the NuGet packages
+RUN dotnet restore ProvingService/ProvingService.csproj
+
+# Build the application
+RUN dotnet publish ProvingService/ProvingService.csproj -c Release -o out
 
 # Use the .NET 8.0 runtime as the base image
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
@@ -26,4 +26,4 @@ COPY --from=build-env /app/out .
 ENV ASPNETCORE_URLS=http://0.0.0.0:7020
 
 # Set the entrypoint
-ENTRYPOINT ["/app/ProvingService"]
+ENTRYPOINT ["dotnet", "ProvingService.dll"]
