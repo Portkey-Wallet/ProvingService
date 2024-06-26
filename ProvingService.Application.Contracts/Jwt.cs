@@ -5,7 +5,7 @@ using JWT;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace ProvingService.Types;
+namespace ProvingService.Application.Contracts;
 
 public class InvalidJwtException : Exception
 {
@@ -16,11 +16,11 @@ public class InvalidJwtException : Exception
 
 public class Jwt
 {
-    public required string Kid { get; set; }
-    public required string Subject { get; set; }
-    public required string Issuer { get; set; }
-    public required string Nonce { get; set; }
-    public required string Signature { get; set; }
+    public string Kid { get; set; } = null!;
+    public string Subject { get; set; } = null!;
+    public string Issuer { get; set; } = null!;
+    public string Nonce { get; set; } = null!;
+    public string Signature { get; set; } = null!;
 
     public static Jwt Parse(string raw)
     {

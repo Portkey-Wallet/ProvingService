@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProvingService", "ProvingSe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProvingService.Tests", "ProvingService.Tests\ProvingService.Tests.csproj", "{57DEEA36-B744-49B2-B650-78ECDC7DE8C9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProvingService.Application", "ProvingService.Application\ProvingService.Application.csproj", "{4E142CD2-A0FB-4460-AC44-79548F6DC156}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProvingService.Application.Contracts", "ProvingService.Application.Contracts\ProvingService.Application.Contracts.csproj", "{4A99FF84-0E52-44AA-B8E0-D00746513C3D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +28,13 @@ Global
 		{57DEEA36-B744-49B2-B650-78ECDC7DE8C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57DEEA36-B744-49B2-B650-78ECDC7DE8C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57DEEA36-B744-49B2-B650-78ECDC7DE8C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E142CD2-A0FB-4460-AC44-79548F6DC156}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E142CD2-A0FB-4460-AC44-79548F6DC156}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E142CD2-A0FB-4460-AC44-79548F6DC156}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E142CD2-A0FB-4460-AC44-79548F6DC156}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A99FF84-0E52-44AA-B8E0-D00746513C3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A99FF84-0E52-44AA-B8E0-D00746513C3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A99FF84-0E52-44AA-B8E0-D00746513C3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A99FF84-0E52-44AA-B8E0-D00746513C3D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

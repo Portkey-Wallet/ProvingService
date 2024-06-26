@@ -1,4 +1,4 @@
-namespace ProvingService.Services;
+namespace ProvingService.Application;
 
 public class CircuitSettings
 {

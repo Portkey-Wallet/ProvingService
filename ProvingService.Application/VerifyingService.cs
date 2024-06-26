@@ -10,22 +10,16 @@ using JWT;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Portkey.JwtProof.Extensions;
-using ProvingService.Controllers;
-using ProvingService.Helpers;
+using ProvingService.Application.Contracts;
+using ProvingService.Application.Internal;
 
-namespace ProvingService.Services;
+namespace ProvingService.Application;
 
 public class VerifyingException : Exception
 {
     public VerifyingException(string message) : base(message)
     {
     }
-}
-
-public interface IVerifyingService
-{
-    Task<bool> VerifyAsync(VerifyRequest request);
-    string GetVerifyingKey();
 }
 
 /// <summary>
@@ -63,7 +57,7 @@ public class VerifyingService : IVerifyingService
     /// </summary>
     /// <param name="request">The request to verify the proof of the user.</param>
     /// <returns>True if the proof is verified, otherwise false.</returns>
-    public async Task<bool> VerifyAsync(VerifyRequest request)
+    public async Task<bool> VerifyAsync(VerifyInput request)
     {
         var vk = GetVerifyingKey();
 
@@ -71,7 +65,7 @@ public class VerifyingService : IVerifyingService
         var pubkeyChunks = new JwtBase64UrlEncoder().Decode(pubkey)
             .ToChunked(CircomBigIntN, CiromBigIntK)
             .Select(HexToBigInt).ToList();
-        var proof = JsonConvert.DeserializeObject<RapidSnarkProofRepr>(request.Proof);
+        var proof = JsonConvert.DeserializeObject<InternalRapidSnarkProofRepr>(request.Proof);
         if (proof == null) throw new VerifyingException("Invalid proof format");
 
         var nonceInInts = Encoding.UTF8.GetBytes(request.Nonce).Select(b => b.ToString()).ToList();
@@ -97,7 +91,7 @@ public class VerifyingService : IVerifyingService
     }
 }
 
-public class RapidSnarkProofRepr
+internal class InternalRapidSnarkProofRepr
 {
     [JsonProperty("pi_a")] public List<string> PiA { get; set; }
     [JsonProperty("pi_b")] public List<List<string>> PiB { get; set; }

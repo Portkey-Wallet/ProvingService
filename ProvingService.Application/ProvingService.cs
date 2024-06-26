@@ -3,22 +3,14 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using AElf.Types;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Portkey.JwtProof;
-using Portkey.JwtProof.Extensions;
-using ProvingService.Controllers;
-using ProvingService.Helpers;
-using ProvingService.Types;
+using ProvingService.Application.Contracts;
+using ProvingService.Application.Internal;
 
-namespace ProvingService.Services;
-
-public interface IProvingService
-{
-    Task<(string, string)> ProveAsync(ProveRequest request);
-}
+namespace ProvingService.Application;
 
 public class ProofGenerationException : Exception
 {
@@ -46,7 +38,7 @@ public class ProvingService : IProvingService
         _logger = logger;
     }
 
-    public async Task<(string, string)> ProveAsync(ProveRequest request)
+    public async Task<(string, string)> ProveAsync(ProveInput request)
     {
         var jwt = Jwt.Parse(request.Jwt);
         var salt = Salt.Parse(request.Salt);

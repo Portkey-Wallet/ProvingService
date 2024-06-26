@@ -1,7 +1,7 @@
 using System;
-using ProvingService.Helpers;
+using ProvingService.Application.Contracts.Internal;
 
-namespace ProvingService.Types;
+namespace ProvingService.Application.Contracts;
 
 public class InvalidSaltException : Exception
 {
@@ -12,7 +12,7 @@ public class InvalidSaltException : Exception
 
 public class Salt
 {
-    public required byte[] Value { get; set; }
+    public byte[] Value { get; set; } = null!;
 
     public static Salt Parse(string raw)
     {

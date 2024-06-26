@@ -1,4 +1,4 @@
-namespace ProvingService.Controllers;
+namespace ProvingService.Application;
 
 public class ProverServerSettings
 {

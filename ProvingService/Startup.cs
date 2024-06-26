@@ -1,4 +1,3 @@
-using System;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -6,8 +5,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.FeatureManagement;
 using Microsoft.OpenApi.Models;
-using ProvingService.Controllers;
-using ProvingService.Services;
+using ProvingService.Application;
+using ProvingService.Application.Contracts;
+using ProvingService.Application.PoseidonHash;
+using ProvingService.Application.Sha256;
 
 public class Startup
 {
@@ -25,6 +26,7 @@ public class Startup
         services.Configure<JwksSettings>(_configuration.GetSection("JwksSettings"));
         services.Configure<CircuitSettings>(_configuration.GetSection("CircuitSettings"));
 
+        // TODO: Move these configurations into Application project
         services.AddTransient<IIdentifierHashService>(serviceProvider =>
         {
             var featureManager = serviceProvider.GetRequiredService<IFeatureManager>();
@@ -38,7 +40,7 @@ public class Startup
 
         services.AddSingleton<IJwksService, JwksService>();
         services.AddSingleton<IVerifyingService, VerifyingService>();
-        services.AddSingleton<IProvingService, ProvingService.Services.ProvingService>();
+        services.AddSingleton<IProvingService, ProvingService.Application.ProvingService>();
         services.AddHttpClient();
 
         services.AddControllers();

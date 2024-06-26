@@ -2,8 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.FeatureManagement.Mvc;
-using ProvingService.Services;
+using ProvingService.Application.Contracts;
 
 namespace ProvingService.Controllers
 {
@@ -33,7 +32,11 @@ namespace ProvingService.Controllers
         {
             try
             {
-                var (proof, identifierHash) = await _provingService.ProveAsync(request);
+                var (proof, identifierHash) = await _provingService.ProveAsync(new ProveInput
+                {
+                    Jwt = request.Jwt,
+                    Salt = request.Salt
+                });
 
                 return Ok(new ProveResponse
                 {
@@ -55,7 +58,14 @@ namespace ProvingService.Controllers
         {
             try
             {
-                var valid = await _verifyingService.VerifyAsync(request);
+                var valid = await _verifyingService.VerifyAsync(new VerifyInput
+                {
+                    IdentifierHash = request.IdentifierHash,
+                    Kid = request.Kid,
+                    Nonce = request.Nonce,
+                    Proof = request.Proof,
+                    Salt = request.Salt
+                });
                 return Ok(new VerifyingResponse
                 {
                     Valid = valid

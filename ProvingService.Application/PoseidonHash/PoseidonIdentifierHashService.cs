@@ -3,31 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Text;
-using AElf;
-using Portkey.JwtProof.Extensions;
-using ProvingService.Helpers;
+using ProvingService.Application.Contracts;
 
-namespace ProvingService.Services;
-
-public interface IIdentifierHashService
-{
-    string GenerateIdentifierHash(string subject, byte[] salt);
-    List<string> ToPublicInput(string identifierHash);
-}
-
-public class Sha256IdentifierHashService : IIdentifierHashService
-{
-    public string GenerateIdentifierHash(string subject, byte[] salt)
-    {
-        var identifierHash = Helpers.HashHelper.GetHash(Encoding.UTF8.GetBytes(subject), salt);
-        return identifierHash.Value.ToHex();
-    }
-
-    public List<string> ToPublicInput(string identifierHash)
-    {
-        return identifierHash.HexStringToByteArray().Select(b => b.ToString()).ToList();
-    }
-}
+namespace ProvingService.Application.PoseidonHash;
 
 public class PoseidonIdentifierHashService : IIdentifierHashService
 {
