@@ -26,4 +26,4 @@ COPY --from=build-env /app/out .
 ENV ASPNETCORE_URLS=http://0.0.0.0:7020
 
 # Set the entrypoint
-ENTRYPOINT ["dotnet", "ProvingService.dll"]
+ENTRYPOINT ["/app/ProvingService"]
