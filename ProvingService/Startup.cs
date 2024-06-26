@@ -22,25 +22,8 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddFeatureManagement();
-        services.Configure<ProverServerSettings>(_configuration.GetSection("ProverServerSettings"));
-        services.Configure<JwksSettings>(_configuration.GetSection("JwksSettings"));
-        services.Configure<CircuitSettings>(_configuration.GetSection("CircuitSettings"));
+        services.AddGroth16Services(_configuration);
 
-        // TODO: Move these configurations into Application project
-        services.AddTransient<IIdentifierHashService>(serviceProvider =>
-        {
-            var featureManager = serviceProvider.GetRequiredService<IFeatureManager>();
-            if (featureManager.IsEnabledAsync("UsePoseidon").Result)
-            {
-                return new PoseidonIdentifierHashService();
-            }
-
-            return new Sha256IdentifierHashService();
-        });
-
-        services.AddSingleton<IJwksService, JwksService>();
-        services.AddSingleton<IVerifyingService, VerifyingService>();
-        services.AddSingleton<IProvingService, ProvingService.Application.ProvingService>();
         services.AddHttpClient();
 
         services.AddControllers();
