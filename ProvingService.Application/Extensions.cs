@@ -2,8 +2,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.FeatureManagement;
 using ProvingService.Application.Contracts;
-using ProvingService.Application.PoseidonHash;
-using ProvingService.Application.Sha256;
+using ProvingService.Domain.PoseidonHash;
+using ProvingService.Domain.Sha256Hash;
 
 namespace ProvingService.Application;
 

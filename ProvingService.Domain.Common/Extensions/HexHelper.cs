@@ -1,10 +1,10 @@
 using System;
 
-namespace ProvingService.Application.Internal;
+namespace ProvingService.Domain.Common.Extensions;
 
-internal static class HexHelper
+public static class HexHelper
 {
-    internal static byte[] HexStringToByteArray(this string hex)
+    public static byte[] HexStringToByteArray(this string hex)
     {
         var length = hex.Length;
         var bytes = new byte[length / 2];

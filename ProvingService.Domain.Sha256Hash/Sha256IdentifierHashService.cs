@@ -5,9 +5,9 @@ using System.Text;
 using AElf;
 using AElf.Types;
 using ProvingService.Application.Contracts;
-using ProvingService.Application.Internal;
+using ProvingService.Domain.Common.Extensions;
 
-namespace ProvingService.Application.Sha256;
+namespace ProvingService.Domain.Sha256Hash;
 
 public class Sha256IdentifierHashService : IIdentifierHashService
 {

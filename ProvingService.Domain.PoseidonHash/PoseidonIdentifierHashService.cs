@@ -5,7 +5,7 @@ using System.Numerics;
 using System.Text;
 using ProvingService.Application.Contracts;
 
-namespace ProvingService.Application.PoseidonHash;
+namespace ProvingService.Domain.PoseidonHash;
 
 public class PoseidonIdentifierHashService : IIdentifierHashService
 {

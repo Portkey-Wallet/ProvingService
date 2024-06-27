@@ -1,7 +1,7 @@
 using System;
-using ProvingService.Application.Contracts.Internal;
+using ProvingService.Domain.Common.Extensions;
 
-namespace ProvingService.Application.Contracts;
+namespace ProvingService.Domain.Common;
 
 public class InvalidSaltException : Exception
 {

@@ -8,16 +8,10 @@ using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Portkey.JwtProof;
 using ProvingService.Application.Contracts;
-using ProvingService.Application.Internal;
+using ProvingService.Domain.Common;
+using ProvingService.Domain.Common.Extensions;
 
 namespace ProvingService.Application;
-
-public class ProofGenerationException : Exception
-{
-    public ProofGenerationException(string message) : base(message)
-    {
-    }
-}
 
 public class ProvingService : IProvingService
 {

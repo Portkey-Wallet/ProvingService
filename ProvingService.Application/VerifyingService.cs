@@ -11,7 +11,7 @@ using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Portkey.JwtProof.Extensions;
 using ProvingService.Application.Contracts;
-using ProvingService.Application.Internal;
+using ProvingService.Domain.Common.Extensions;
 
 namespace ProvingService.Application;
 

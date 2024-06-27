@@ -12,14 +12,16 @@
         <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0"/>
         <PackageReference Include="JWT" Version="10.1.1"/>
         <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0"/>
-        <PackageReference Include="AElf.Types" Version="1.6.0"/>
-        <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0"/>
         <PackageReference Include="Microsoft.FeatureManagement" Version="3.3.1"/>
         <PackageReference Include="Portkey.JwtProof" Version="2.0.0"/>
     </ItemGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\ProvingService.Application.Contracts\ProvingService.Application.Contracts.csproj"/>
+        <ProjectReference Include="..\ProvingService.Domain.Common\ProvingService.Domain.Common.csproj"/>
+        <ProjectReference Include="..\ProvingService.Domain.PoseidonHash\ProvingService.Domain.PoseidonHash.csproj" />
+        <ProjectReference Include="..\ProvingService.Domain.Sha256Hash\ProvingService.Domain.Sha256Hash.csproj" />
     </ItemGroup>
 
 </Project>

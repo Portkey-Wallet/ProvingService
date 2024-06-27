@@ -6,9 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.FeatureManagement;
 using Microsoft.OpenApi.Models;
 using ProvingService.Application;
-using ProvingService.Application.Contracts;
-using ProvingService.Application.PoseidonHash;
-using ProvingService.Application.Sha256;
+using ProvingService.Application.HashMapping;
 
 public class Startup
 {
@@ -23,6 +21,7 @@ public class Startup
     {
         services.AddFeatureManagement();
         services.AddGroth16Services(_configuration);
+        services.AddHashMapping(_configuration);
 
         services.AddHttpClient();
 

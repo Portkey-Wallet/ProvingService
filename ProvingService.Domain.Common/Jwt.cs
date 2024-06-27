@@ -5,7 +5,7 @@ using JWT;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace ProvingService.Application.Contracts;
+namespace ProvingService.Domain.Common;
 
 public class InvalidJwtException : Exception
 {
