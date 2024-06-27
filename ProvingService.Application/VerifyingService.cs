@@ -41,7 +41,7 @@ public class VerifyingService : IVerifyingService
             _circuitSettings.ZkeyPath);
         _verifyingKey = prover.ExportVerifyingKeyBn254();
 
-        return _verifyingKey;
+        return _verifyingKey.TrimEnd('\u0000');
     }
 
     public VerifyingService(IOptionsSnapshot<CircuitSettings> circuitSettings, IJwksService jwksService,
