@@ -2,16 +2,10 @@ using Groth16.Net;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using ProvingService.Application.Contracts.HashMapping;
-using ProvingService.Domain.Common.Extensions;
+using ProvingService.Domain.Common;
+using ProvingService.Domain.HashMapping;
 
 namespace ProvingService.Application.HashMapping;
-
-public class VerifyingException : Exception
-{
-    public VerifyingException(string message) : base(message)
-    {
-    }
-}
 
 /// <summary>
 /// For convenience, the VerifyingServiceForHashMapping class is used to verify the proof of the user.
@@ -43,20 +37,12 @@ public class VerifyingServiceForHashMapping : IVerifyingServiceForHashMapping
     /// <returns>True if the proof is verified, otherwise false.</returns>
     public async Task<bool> VerifyAsync(VerifyInputForHashMapping input)
     {
-        // TODO: Validate input
-        var vk = GetVerifyingKey();
-
-        var sha25IdHash = input.Sha256IdHash.HexStringToByteArray().Select(b => b.ToString()).ToList();
-
-        var publicInputs = new List<List<string>>
-        {
-            new List<string>() { input.PoseidonIdHash }, sha25IdHash
-        }.SelectMany(n => n).ToList();
+        var publicInput = PublicInputPreparer.Prepare(input.Sha256IdHash, input.PoseidonIdHash);
 
         var proof = JsonConvert.DeserializeObject<InternalRapidSnarkProofRepr>(input.Proof);
-        if (proof == null) throw new VerifyingException("Invalid proof format");
-
-        return Verifier.VerifyBn254(vk, publicInputs, new RapidSnarkProof
+        if (proof == null) throw new InvalidValueException("Invalid proof format");
+        var vk = GetVerifyingKey();
+        return Verifier.VerifyBn254(vk, publicInput, new RapidSnarkProof
         {
             PiA = proof.PiA,
             PiB = proof.PiB,

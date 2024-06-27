@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ProvingService.Domain.Common;
 
 namespace ProvingService.Domain.HashMapping;
 
@@ -11,9 +12,21 @@ public static class InputPreparer
 {
     public static CircuitInput Prepare(string subject, byte[] salt)
     {
+        if (subject.Length > CircuitParameters.MaxSubLength)
+        {
+            throw new InputExceedingMaxLengthException(
+                $"Input subject exceeding max length of {CircuitParameters.MaxSubLength}.");
+        }
+
+        if (salt.Length > CircuitParameters.SaltLength)
+        {
+            throw new InputExceedingMaxLengthException(
+                $"Input salt exceeding max length of {CircuitParameters.SaltLength}.");
+        }
+
         var circuitInput = new CircuitInput();
-        circuitInput["sub"] = Pad(subject, 255);
-        circuitInput["salt"] = Pad(salt, 16);
+        circuitInput["sub"] = Pad(subject, CircuitParameters.MaxSubLength);
+        circuitInput["salt"] = Pad(salt, CircuitParameters.SaltLength);
         circuitInput["subLen"] = new List<string>() { subject.Length.ToString() };
         circuitInput["saltLen"] = new List<string>() { salt.Length.ToString() };
         return circuitInput;

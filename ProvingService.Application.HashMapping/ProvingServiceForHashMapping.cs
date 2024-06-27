@@ -40,7 +40,6 @@ public class ProvingServiceForHashMapping : IProvingServiceForHashMapping
 
         var preparedInput = InputPreparer.Prepare(input.Subject, input.Salt.HexStringToByteArray());
 
-
         var responseMessage = await SendPostRequest(preparedInput);
         var proof = await responseMessage.Content.ReadAsStringAsync();
         if (proof.Contains("failed"))

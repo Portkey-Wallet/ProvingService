@@ -4,6 +4,8 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using ProvingService.Application.Contracts;
+using ProvingService.Domain.Common;
+using ProvingService.Domain.HashMapping;
 
 namespace ProvingService.Domain.PoseidonHash;
 
@@ -11,15 +13,21 @@ public class PoseidonIdentifierHashService : IIdentifierHashService
 {
     public string GenerateIdentifierHash(string subject, byte[] salt)
     {
-        const int requiredSubjectLength = 255;
+        if (subject.Length > CircuitParameters.MaxSubLength)
+        {
+            throw new InputExceedingMaxLengthException(
+                $"Input subject exceeding max length of {CircuitParameters.MaxSubLength}.");
+        }
 
         var subjectBytes = Encoding.ASCII.GetBytes(subject);
 
         var hashString =
-            new Poseidon.Net.Poseidon().Hash(ChunksToFieldElements(subjectBytes, requiredSubjectLength, 31));
+            new Poseidon.Net.Poseidon().Hash(ChunksToFieldElements(subjectBytes, CircuitParameters.MaxSubLength, 31));
 
         return new Poseidon.Net.Poseidon().Hash(new List<string>()
-            { hashString, ChunksToFieldElements(salt, 16, 16).First() });
+        {
+            hashString, ChunksToFieldElements(salt, CircuitParameters.SaltLength, CircuitParameters.SaltLength).First()
+        });
     }
 
     private List<string> ChunksToFieldElements(byte[] bytes, int requiredLength, int chunkSize = 31)

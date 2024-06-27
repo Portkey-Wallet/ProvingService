@@ -1,11 +1,12 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AElf;
 using AElf.Types;
 using ProvingService.Application.Contracts;
+using ProvingService.Domain.Common;
 using ProvingService.Domain.Common.Extensions;
+using ProvingService.Domain.HashMapping;
 
 namespace ProvingService.Domain.Sha256Hash;
 
@@ -23,22 +24,22 @@ public class Sha256IdentifierHashService : IIdentifierHashService
     }
 
 
-    private static Hash GetHash(byte[] identifier, byte[] salt)
+    private static Hash GetHash(byte[] subject, byte[] salt)
     {
-        const int maxIdentifierLength = 256;
-        const int maxSaltLength = 16;
-
-        if (identifier.Length > maxIdentifierLength)
+        if (subject.Length > CircuitParameters.MaxSubLength)
         {
-            throw new Exception("Identifier is too long");
+            throw new InputExceedingMaxLengthException(
+                $"Input subject exceeding max length of {CircuitParameters.MaxSubLength}.");
         }
 
-        if (salt.Length != maxSaltLength)
+        if (salt.Length > CircuitParameters.SaltLength)
         {
-            throw new Exception($"Salt has to be {maxSaltLength} bytes.");
+            throw new InputExceedingMaxLengthException(
+                $"Input salt exceeding max length of {CircuitParameters.SaltLength}.");
         }
 
-        var hash = AElf.HashHelper.ComputeFrom(identifier);
+
+        var hash = AElf.HashHelper.ComputeFrom(subject);
         return AElf.HashHelper.ComputeFrom(hash.Concat(salt).ToArray());
     }
 }
