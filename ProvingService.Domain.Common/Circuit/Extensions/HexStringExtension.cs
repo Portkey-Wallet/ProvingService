@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Numerics;
 
 namespace ProvingService.Domain.Common.Circuit.Extensions;
@@ -27,7 +26,7 @@ public static class HexStringExtension
         return bytes.ToChunked(bytesPerChunk, numOfChunks);
     }
 
-    internal static string HexToBigInt(this string hexString)
+    public static string HexToBigInt(this string hexString)
     {
         return new BigInteger(hexString.DecodeHex(), true, true).ToString();
     }

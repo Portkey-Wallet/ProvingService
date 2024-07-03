@@ -58,24 +58,17 @@ public class VerifyingService : IVerifyingService
     /// <returns>True if the proof is verified, otherwise false.</returns>
     public async Task<bool> VerifyAsync(VerifyInput request)
     {
-        var vk = GetVerifyingKey();
-
         var pubkey = await _jwksService.GetKeyAsync(request.Kid);
-        var pubkeyChunks = new JwtBase64UrlEncoder().Decode(pubkey)
-            .ToChunked(Constants.CircomBigIntN, Constants.CiromBigIntK)
-            .Select(HexToBigInt).ToList();
         var proof = JsonConvert.DeserializeObject<InternalRapidSnarkProofRepr>(request.Proof);
         if (proof == null) throw new VerifyingException("Invalid proof format");
-
-        var nonceInInts = Encoding.UTF8.GetBytes(request.Nonce).Select(b => b.ToString()).ToList();
-        var saltInInts = request.Salt.HexStringToByteArray().Select(b => b.ToString()).ToList();
 
         var publicInputs = new List<List<string>>
         {
             _identifierHashService.ToPublicInput(request.IdentifierHash),
-            nonceInInts, pubkeyChunks, saltInInts
+            PublicInputPreparer.Prepare(request.Nonce, pubkey, request.Salt.DecodeHex())
         }.SelectMany(n => n).ToList();
 
+        var vk = GetVerifyingKey();
         return Verifier.VerifyBn254(vk, publicInputs, new RapidSnarkProof
         {
             PiA = proof.PiA,
