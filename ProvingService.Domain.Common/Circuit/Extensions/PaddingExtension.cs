@@ -17,4 +17,17 @@ public static class PaddingExtension
 
         return paddedBytes;
     }
+
+    internal static List<string> Pad(this byte[] bytes, int paddedBytesSize)
+    {
+        var paddedBytes = bytes.Select(c => ((int)c).ToString()).ToList();
+
+        var paddingLength = paddedBytesSize - paddedBytes.Count;
+        if (paddingLength > 0)
+        {
+            paddedBytes.AddRange(Enumerable.Repeat("0", paddingLength));
+        }
+
+        return paddedBytes;
+    }
 }

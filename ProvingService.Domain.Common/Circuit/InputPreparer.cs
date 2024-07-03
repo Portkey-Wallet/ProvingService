@@ -19,12 +19,17 @@ public static class InputPreparer
         var signature = parts[2];
 
         var sigBytes = new JwtBase64UrlEncoder().Decode(signature);
-
         var pubkeyBytes = new JwtBase64UrlEncoder().Decode(pubkeyB64);
+
+        var rawJwt = $"{header}.{payload}";
+        // 9 extra bytes for sha2 padding of one byte 0x80 and 8 bytes for the length
+        var numSha2Blocks = (int)Math.Ceiling((rawJwt.Length + 9) / 64.0);
+        var paddedUnsignedJwt = Sha256PreimagePadding(rawJwt)
+            .Pad(Constants.StringLengths["jwt"]);
 
         var args = new Dictionary<string, IList<string>>()
         {
-            { "jwt", $"{header}.{payload}".Pad(Constants.StringLengths["jwt"]) },
+            { "padded_unsigned_jwt", paddedUnsignedJwt },
             {
                 "signature",
                 sigBytes.ToChunked(Constants.CircomBigIntN, Constants.CiromBigIntK)
@@ -37,6 +42,8 @@ public static class InputPreparer
             },
             { "salt", salt.Select(b => b.ToString()).ToList() },
             { "payload_start_index", new List<string>() { (header.Length + 1).ToString() } },
+            { "payload_len", new List<string>() { payload.Length.ToString() } },
+            { "num_sha2_blocks", new List<string>() { numSha2Blocks.ToString() } },
         };
         var claimArgs = new[] { ClaimName.Subject, ClaimName.Nonce }.SelectMany(claimName =>
             jwtB64.Extract(claimName).IterArguments()
@@ -47,6 +54,36 @@ public static class InputPreparer
         }
 
         return args;
+    }
+
+    public static byte[] Sha256PreimagePadding(string message)
+    {
+        // Convert the message to bytes
+        var messageBytes = Encoding.UTF8.GetBytes(message);
+
+        // Step 1: Append '1' bit (0x80 in hex)
+        var paddedBytes = new byte[messageBytes.Length + 1];
+        Array.Copy(messageBytes, paddedBytes, messageBytes.Length);
+        paddedBytes[messageBytes.Length] = 0x80;
+        Console.WriteLine(paddedBytes.Length);
+
+        // Step 2: Add zero bits
+        var k = (448 - (paddedBytes.Length * 8) % 512) % 512;
+        Array.Resize(ref paddedBytes, paddedBytes.Length + (k / 8));
+        Console.WriteLine(paddedBytes.Length);
+
+        // Step 3: Append original message length (64 bits)
+        long originalLengthBits = messageBytes.Length * 8;
+        var lengthBytes = BitConverter.GetBytes(originalLengthBits);
+        if (BitConverter.IsLittleEndian)
+        {
+            Array.Reverse(lengthBytes);
+        }
+
+        Array.Resize(ref paddedBytes, paddedBytes.Length + 8);
+        Array.Copy(lengthBytes, 0, paddedBytes, paddedBytes.Length - 8, 8);
+
+        return paddedBytes;
     }
 
     private static ClaimInfo Extract(this string jwt, ClaimName name)

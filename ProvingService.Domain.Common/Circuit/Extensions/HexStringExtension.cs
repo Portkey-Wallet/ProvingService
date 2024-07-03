@@ -29,6 +29,6 @@ public static class HexStringExtension
 
     internal static string HexToBigInt(this string hexString)
     {
-        return BigInteger.Parse(hexString, NumberStyles.HexNumber).ToString();
+        return new BigInteger(hexString.DecodeHex(), true, true).ToString();
     }
 }

@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 using ProvingService.Application.Contracts;
 using ProvingService.Domain.Common.Circuit.Extensions;
 using ProvingService.Domain.Common.Extensions;
+using ProvingService.Domain.Common.Circuit;
 
 namespace ProvingService.Application;
 
@@ -27,8 +28,6 @@ public class VerifyingException : Exception
 /// </summary>
 public class VerifyingService : IVerifyingService
 {
-    private const int CircomBigIntN = 121;
-    private const int CiromBigIntK = 17;
     private CircuitSettings _circuitSettings;
     private string? _verifyingKey;
     private IJwksService _jwksService;
@@ -63,7 +62,7 @@ public class VerifyingService : IVerifyingService
 
         var pubkey = await _jwksService.GetKeyAsync(request.Kid);
         var pubkeyChunks = new JwtBase64UrlEncoder().Decode(pubkey)
-            .ToChunked(CircomBigIntN, CiromBigIntK)
+            .ToChunked(Constants.CircomBigIntN, Constants.CiromBigIntK)
             .Select(HexToBigInt).ToList();
         var proof = JsonConvert.DeserializeObject<InternalRapidSnarkProofRepr>(request.Proof);
         if (proof == null) throw new VerifyingException("Invalid proof format");

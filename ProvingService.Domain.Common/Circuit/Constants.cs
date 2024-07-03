@@ -5,8 +5,8 @@ namespace ProvingService.Domain.Common.Circuit;
 
 public static class Constants
 {
-    internal const int CircomBigIntN = 121;
-    internal const int CiromBigIntK = 17;
+    public const int CircomBigIntN = 64;
+    public const int CiromBigIntK = 32;
 
     internal static readonly Dictionary<ClaimName, string> RegexPatterns = new()
     {
