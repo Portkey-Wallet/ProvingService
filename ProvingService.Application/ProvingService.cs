@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -6,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using Portkey.JwtProof;
 using ProvingService.Application.Contracts;
 using ProvingService.Domain.Common;
+using ProvingService.Domain.Common.Circuit;
 using ProvingService.Domain.Common.Extensions;
 
 namespace ProvingService.Application;

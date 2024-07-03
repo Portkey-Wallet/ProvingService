@@ -9,8 +9,8 @@ using Groth16.Net;
 using JWT;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using Portkey.JwtProof.Extensions;
 using ProvingService.Application.Contracts;
+using ProvingService.Domain.Common.Circuit.Extensions;
 using ProvingService.Domain.Common.Extensions;
 
 namespace ProvingService.Application;
