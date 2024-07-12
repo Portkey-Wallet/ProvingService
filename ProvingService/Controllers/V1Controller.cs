@@ -1,8 +1,10 @@
 using System;
 using System.Threading.Tasks;
+using AElf;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProvingService.Application.Contracts;
+using ProvingService.Domain.Common.Extensions;
 
 namespace ProvingService.Controllers
 {
@@ -38,10 +40,15 @@ namespace ProvingService.Controllers
                     Salt = request.Salt
                 });
 
+                var verifyingKey = _verifyingService.GetVerifyingKey().Trim('\0');
+                // TODO: This is not a good design, but proving service doesn't provide circuit id for now
+                var circuitId = verifyingKey.HexStringToByteArray().ComputeHash().ToHex();
+
                 return Ok(new ProveResponse
                 {
                     Proof = proof,
-                    IdentifierHash = identifierHash
+                    IdentifierHash = identifierHash,
+                    CircuitId = circuitId
                 });
             }
             catch (Exception ex)
