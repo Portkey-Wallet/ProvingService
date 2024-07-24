@@ -17,7 +17,7 @@ public static class Constants
 
     internal static readonly Dictionary<string, int> StringLengths = new()
     {
-        { "jwt", 1024 },
+        { "jwt", 1088 },
         { "sub", 264 },
         { "exp", 17 },
         { "nonce", 77 },
