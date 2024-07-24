@@ -69,6 +69,7 @@ public static class InputPreparer
 
         // Step 2: Add zero bits
         var k = (448 - (paddedBytes.Length * 8) % 512) % 512;
+        if (k < 0) k += 512;
         Array.Resize(ref paddedBytes, paddedBytes.Length + (k / 8));
         Console.WriteLine(paddedBytes.Length);
 
