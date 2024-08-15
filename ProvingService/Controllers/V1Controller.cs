@@ -27,6 +27,16 @@ namespace ProvingService.Controllers
             return "ok";
         }
 
+        [HttpGet("metadata")]
+        public async Task<MetaData> GetMetaData()
+        {
+            var zkeyMd5 = _verifyingService.GetZkeyMd5();
+            return await Task.FromResult(new MetaData()
+            {
+                ZkeyMd5 = zkeyMd5
+            });
+        }
+
         [HttpPost("prove")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ProveResponse))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErrorResponse))]

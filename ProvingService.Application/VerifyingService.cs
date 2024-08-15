@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Numerics;
 using System.Text;
@@ -30,6 +31,7 @@ public class VerifyingService : IVerifyingService
 {
     private CircuitSettings _circuitSettings;
     private string? _verifyingKey;
+    private string? _zkeyMd5;
     private IJwksService _jwksService;
     private readonly IIdentifierHashService _identifierHashService;
 
@@ -41,6 +43,19 @@ public class VerifyingService : IVerifyingService
         _verifyingKey = prover.ExportVerifyingKeyBn254();
 
         return _verifyingKey.TrimEnd('\u0000');
+    }
+
+    public string GetZkeyMd5()
+    {
+        if (_verifyingKey != null) return _verifyingKey;
+        using (var md5 = System.Security.Cryptography.MD5.Create())
+        using (var stream = File.OpenRead(_circuitSettings.ZkeyPath))
+        {
+            byte[] hashBytes = md5.ComputeHash(stream);
+            _zkeyMd5 = BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
+        }
+
+        return _zkeyMd5;
     }
 
     public VerifyingService(IOptionsSnapshot<CircuitSettings> circuitSettings, IJwksService jwksService,
