@@ -41,6 +41,12 @@ public class Startup
             app.UseDeveloperExceptionPage();
         }
 
+        app.UseCors(options => {
+            options.AllowAnyOrigin();
+            options.AllowAnyHeader();
+            options.AllowAnyMethod();
+        });
+
         // Enable middleware to serve generated Swagger as Helper JSON endpoint
         app.UseSwagger();
 
