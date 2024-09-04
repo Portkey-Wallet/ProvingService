@@ -47,7 +47,7 @@ public class VerifyingService : IVerifyingService
 
     public string GetZkeyMd5()
     {
-        if (_verifyingKey != null) return _verifyingKey;
+        if (_zkeyMd5 != null) return _zkeyMd5;
         using (var md5 = System.Security.Cryptography.MD5.Create())
         using (var stream = File.OpenRead(_circuitSettings.ZkeyPath))
         {
