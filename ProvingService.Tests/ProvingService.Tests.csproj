@@ -9,7 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Groth16.Net" Version="1.0.3-1718588949" />
+        <PackageReference Include="Groth16.Net" Version="1.1.1" />
         <PackageReference Include="JWT" Version="10.1.1" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0"/>
         <PackageReference Include="xunit" Version="2.4.1"/>

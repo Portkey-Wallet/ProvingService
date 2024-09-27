@@ -2,7 +2,7 @@
 
     <ItemGroup>
         <PackageReference Include="Poseidon.Net" Version="0.1.0"/>
-        <PackageReference Include="Groth16.Net" Version="1.0.3"/>
+        <PackageReference Include="Groth16.Net" Version="1.1.1"/>
     </ItemGroup>
 
 </Project>
